@@ -6,6 +6,7 @@ import './App.scss';
 import PostList from './components/PostList/PostList';
 import Pagination from './components/Pagination/Pagination';
 import queryString from 'query-string';
+import PostFilterForm from './components/PostFiltersForm/PostFilterForm';
 
 function App() {
   const [todoList, setTodoList] = useState([
@@ -40,6 +41,7 @@ function App() {
   const [filters, setFilters] = useState({
     _limit: 10,
     _page: 1,
+    title_like: '',
   })
 
   // b7
@@ -83,8 +85,21 @@ function App() {
     })
   }
 
+
+  const handleFiltersChange = (newFilters) => {
+    console.log("check", newFilters.searchTerm);
+
+    setFilters({
+      ...filters,
+      _page: 1,
+      title_like: newFilters.searchTerm,
+    })
+  }
+
+
   return (
     <div className="App">
+      <PostFilterForm onSubmit={(newFilters) => { handleFiltersChange(newFilters) }} />
       {/* <ColorBox /> */}
       {/* <TodoForm onSubmit={(formValue) => { handleTodoFormSubmit(formValue) }} />
       <TodoList todos={todoList} onTodoClick={handleTodoList} /> */}

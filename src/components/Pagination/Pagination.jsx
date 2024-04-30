@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 
 function Pagination(props) {
     const { pagination, onPaceChange } = props;
-    const { _page, _limit, _totalRow } = pagination;
-    const totalPages = Math.ceil(_totalRow / _limit);
-
+    const { _page, _limit, _totalRows } = pagination;
+    // console.log("check", _page, _limit, _totalRow);
+    const totalPages = Math.ceil(_totalRows / _limit);
+    // console.log("check", totalPages);
     const handlePageChange = (newPage) => {
         if (onPaceChange) {
             onPaceChange(newPage);
